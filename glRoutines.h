@@ -2,7 +2,7 @@
 #define GLROUTINES_H
 #include <iostream>
 
-void plot(int x,int y,int z);
+void plot(float x,float y,float z);
 
 void myInit(void);
 

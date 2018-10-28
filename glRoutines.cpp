@@ -4,20 +4,21 @@
 #include "glRoutines.h"
 using namespace std;
 
-void plot(int x,int y,int z)
+void plotPoint(float x,float y,float z)
 {
 	glBegin(GL_POINTS);
-	glVertex3i(x,y,z);
+	glVertex3f(x,y,z);
 	glEnd();
 }
 
 void myInit (void)
 {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glColor3f(0.0f, 0.0f, 0.0f);
-	glPointSize(4.0);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-500.0, 500.0, -500.0, 500.0,-50.0,50.0);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClearDepth(1.0f);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+	// glShadeModel(GL_SMOOTH);
+	// glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);
+	// glOrtho(-500.0, 500.0, -500.0, 500.0,-500.0,500.0);
 }
 
