@@ -5,7 +5,7 @@
 #include <GL/glut.h>
 #include "glRoutines.h"
 using namespace std;
-
+float angle=0.0f;
 void drawEmptyClass()
 {
 	glBegin(GL_QUADS);
@@ -70,11 +70,15 @@ void myDisplay(void)
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	// glLoadIdentity();
+	// gluLookAt(0.0f,0.0f,0.0f,10.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
 	glTranslatef(0.0f,0.0f,-2.5f);
-	glRotatef(0.0f,0.0f,1.0f,0.0f);
+	glRotatef(angle,0.0f,1.0f,0.0f);
 	drawEmptyClass();
+	angle+=0.1f;
 	// drawBoard();
 	// drawChairs();
+	// glutPostRedisplay();
+	glTranslatef(0.0f,0.0f,2.5f);
 	glutSwapBuffers();
 }
 
@@ -88,7 +92,11 @@ void reshape(GLsizei width, GLsizei height)
 	glLoadIdentity();
 	gluPerspective(45.0f,aspect,0.1f,100.0f);
 }
-
+void update(int data)
+{
+	glutTimerFunc(30,update,0);
+	glutPostRedisplay();
+}
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -98,6 +106,8 @@ int main(int argc, char** argv)
 	glutCreateWindow ("Classroom");
 	glutDisplayFunc(myDisplay);	
 	glutReshapeFunc(reshape);
+	glutTimerFunc(30,update,0);
+	// glutIdleFunc(myDisplay);
 	myInit ();
 	glutMainLoop();
 }
