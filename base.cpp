@@ -8,34 +8,32 @@ using namespace std;
 
 void drawEmptyClass()
 {
-	
 	glBegin(GL_QUADS);
-	glColor3f(0.647f,0.165f,0.165f);//TOP
+	glColor3f(0.5f,0.35f,0.05f);//TOP
 	glVertex3f(1.0f,1.0f,-1.0f);
 	glVertex3f(-1.0f,1.0f,-1.0f);
 	glVertex3f(-1.0f,1.0f,0.0f);
 	glVertex3f(1.0f,1.0f,0.0f);
-	glColor3f(0.647f,0.165f,0.165f);//BOTTOM
-	glVertex3f(1.0f,-1.0f,0.0f);
+	glColor3f(0.5f,0.35f,0.05f);//BOTTOM
+	glVertex3f(1.0f,-1.0f,-1.0f);
+	glVertex3f(-1.0f,-1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,0.0f);
-	glVertex3f(-1.0f,-1.0f,-1.0f);
-	glVertex3f(1.0f,-1.0f,-1.0f);
-	glColor3f(0.647f,0.165f,0.165f);//BACK
-	glVertex3f(1.0f,-1.0f,-1.0f);
-	glVertex3f(-1.0f,-1.0f,-1.0f);
-	glVertex3f(-1.0f,1.0f,-1.0f);
+	glVertex3f(1.0f,-1.0f,0.0f);
+	glColor3f(0.5f,0.35f,0.05f);//BACK
 	glVertex3f(1.0f,1.0f,-1.0f);
-	glColor3f(0.647f,0.165f,0.165f);//LEFT
+	glVertex3f(-1.0f,1.0f,-1.0f);
+	glVertex3f(-1.0f,-1.0f,-1.0f);
+	glVertex3f(1.0f,-1.0f,-1.0f);
+	glColor3f(0.5f,0.35f,0.05f);//LEFT
+	glVertex3f(-1.0f,1.0f,-1.0f);
 	glVertex3f(-1.0f,1.0f,0.0f);
-	glVertex3f(-1.0f,1.0f,-1.0f);
-	glVertex3f(-1.0f,-1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,0.0f);
-	glColor3f(0.647f,0.165f,0.165f);//RIGHT
-	glVertex3f(1.0f,1.0f,-1.0f);
+	glVertex3f(-1.0f,-1.0f,-1.0f);
+	glColor3f(0.5f,0.35f,0.05f);//RIGHT
 	glVertex3f(1.0f,1.0f,0.0f);
-	glVertex3f(1.0f,-1.0f,0.0f);
+	glVertex3f(1.0f,1.0f,-1.0f);
 	glVertex3f(1.0f,-1.0f,-1.0f);
-	
+	glVertex3f(1.0f,-1.0f,0.0f);
 	glEnd();
 	glBegin(GL_LINES);
 	glColor3f(0.0f,0.0f,0.0f);//BACK TOP
@@ -71,9 +69,12 @@ void myDisplay(void)
 {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glTranslatef(0.0f,0.0f,-2.0f);
+	// glLoadIdentity();
+	glTranslatef(0.0f,0.0f,-2.5f);
+	glRotatef(0.0f,0.0f,1.0f,0.0f);
 	drawEmptyClass();
+	// drawBoard();
+	// drawChairs();
 	glutSwapBuffers();
 }
 

@@ -14,6 +14,7 @@ void plotPoint(float x,float y,float z)
 void myInit (void)
 {
 	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glShadeModel(GL_SMOOTH);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
