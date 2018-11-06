@@ -2,6 +2,7 @@
 #include <GL/glut.h>
 using namespace std;
 double angle=-45.0f;
+int flag=1;
 void drawEmptyClass()
 {
 	glBegin(GL_QUADS);
@@ -78,10 +79,21 @@ void myDisplay(void) {
 	glRotatef(angle,0.0f,1.0f,0.0f);
 	gluLookAt(0.0f,0.0f,5.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
 	glRotatef(-1*angle,0.0f,1.0f,0.0f);
-	angle+=1.0f;
+	if(flag==1)
+	{
+		angle+=1.0f;	
+	}
+	else if(flag==-1)
+	{
+		angle-=1.0f;
+	}	
 	if(angle>=45.0f)
 	{
-		angle-=90.0f;
+		flag=-1;
+	}
+	if(angle<=-45.0f)
+	{
+		flag=1;
 	}
 	drawEmptyClass();
     glutSwapBuffers();
@@ -96,7 +108,7 @@ void myinit()
 }
 void update(int data)
 {
-	glutTimerFunc(30,update,0);
+	glutTimerFunc(45,update,0);
 	glutPostRedisplay();
 }
 int main(int argc, char **argv) 
@@ -108,7 +120,7 @@ int main(int argc, char **argv)
 	glutCreateWindow("Lighthouse3D - GLUT Tutorial");
 	glutDisplayFunc(myDisplay);
 	glutReshapeFunc(changeSize);
-	glutTimerFunc(30,update,0);
+	glutTimerFunc(45,update,0);
 	myinit();
 	glutMainLoop();
 	return 1;
