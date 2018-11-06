@@ -74,11 +74,16 @@ void myDisplay(void)
 	glTranslatef(0.0f,0.0f,-2.5f);
 	glRotatef(angle,0.0f,1.0f,0.0f);
 	drawEmptyClass();
-	angle+=0.1f;
+	glRotatef(-1*angle,0.0f,1.0f,0.0f);
+	glTranslatef(0.0f,0.0f,2.5f);
+	angle+=1.0f;
+	if(angle>=360.0f)
+	{
+		angle-=360.0f;
+	}
 	// drawBoard();
 	// drawChairs();
 	// glutPostRedisplay();
-	glTranslatef(0.0f,0.0f,2.5f);
 	glutSwapBuffers();
 }
 
@@ -94,7 +99,7 @@ void reshape(GLsizei width, GLsizei height)
 }
 void update(int data)
 {
-	glutTimerFunc(30,update,0);
+	glutTimerFunc(60,update,0);
 	glutPostRedisplay();
 }
 int main(int argc, char** argv)
@@ -106,7 +111,7 @@ int main(int argc, char** argv)
 	glutCreateWindow ("Classroom");
 	glutDisplayFunc(myDisplay);	
 	glutReshapeFunc(reshape);
-	glutTimerFunc(30,update,0);
+	glutTimerFunc(60,update,0);
 	// glutIdleFunc(myDisplay);
 	myInit ();
 	glutMainLoop();
