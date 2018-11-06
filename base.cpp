@@ -1,7 +1,11 @@
 #include <iostream>
 #include <GL/glut.h>
+#include <glm/vec3.hpp>
 using namespace std;
-double angle=-45.0f;
+double angle=0.0f;
+glm::vec3 cameraPos=glm::vec3(0.0f,0.0f,4.0f);
+glm::vec3 directionSight=glm::vec3(0.0f,0.0f,-1.0f);
+glm::vec3 upVec=glm::vec3(0.0f,1.0f,0.0f);
 int flag=1;
 void drawEmptyClass()
 {
@@ -77,24 +81,24 @@ void myDisplay(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glRotatef(angle,0.0f,1.0f,0.0f);
-	gluLookAt(0.0f,0.0f,5.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
-	glRotatef(-1*angle,0.0f,1.0f,0.0f);
-	if(flag==1)
-	{
-		angle+=1.0f;	
-	}
-	else if(flag==-1)
-	{
-		angle-=1.0f;
-	}	
-	if(angle>=45.0f)
-	{
-		flag=-1;
-	}
-	if(angle<=-45.0f)
-	{
-		flag=1;
-	}
+	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],0.0f,0.0f,0.0f,upVec[0],upVec[1],upVec[2]);
+	// glRotatef(-1*angle,0.0f,1.0f,0.0f);
+	// if(flag==1)
+	// {
+	// 	angle+=1.0f;	
+	// }
+	// else if(flag==-1)
+	// {
+	// 	angle-=1.0f;
+	// }	
+	// if(angle>=45.0f)
+	// {
+	// 	flag=-1;
+	// }
+	// if(angle<=-45.0f)
+	// {
+	// 	flag=1;
+	// }
 	drawEmptyClass();
     glutSwapBuffers();
 }
@@ -111,6 +115,38 @@ void update(int data)
 	glutTimerFunc(45,update,0);
 	glutPostRedisplay();
 }
+void processNormalKeys(unsigned char key, int x,int y)
+{
+	if(key==27)
+	{
+		exit(0);
+	}
+}
+
+void processSpecialKeys(int key, int x,int y)
+{
+	double fraction=0.1f;
+	// if(key==GLUT_KEY_LEFT)
+	// {
+
+	// }
+	// if(key==GLUT_KEY_RIGHT)
+	// {
+		
+	// }
+	if(key==GLUT_KEY_UP)
+	{
+		cameraPos[0]+=directionSight[0]*fraction;
+		cameraPos[1]+=directionSight[1]*fraction;
+		cameraPos[2]+=directionSight[2]*fraction;
+	}
+	if(key==GLUT_KEY_DOWN)
+	{
+		cameraPos[0]-=directionSight[0]*fraction;
+		cameraPos[1]-=directionSight[1]*fraction;
+		cameraPos[2]-=directionSight[2]*fraction;	
+	}
+}
 int main(int argc, char **argv) 
 {
 	glutInit(&argc, argv);
@@ -120,6 +156,8 @@ int main(int argc, char **argv)
 	glutCreateWindow("Lighthouse3D - GLUT Tutorial");
 	glutDisplayFunc(myDisplay);
 	glutReshapeFunc(changeSize);
+	glutKeyboardFunc(processNormalKeys);
+	glutSpecialFunc(processSpecialKeys);
 	glutTimerFunc(45,update,0);
 	myinit();
 	glutMainLoop();
