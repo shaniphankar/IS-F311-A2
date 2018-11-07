@@ -1,11 +1,12 @@
 #include <iostream>
 #include <GL/glut.h>
+#include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 using namespace std;
-double angle=0.0f;
-glm::vec3 cameraPos=glm::vec3(0.0f,0.0f,4.0f);
-glm::vec3 directionSight=glm::vec3(0.0f,0.0f,-1.0f);
-glm::vec3 upVec=glm::vec3(0.0f,1.0f,0.0f);
+double angle=0.0f,pitch=0.0f,yaw=-90.0f,fov=45.0f;
+glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,4.0f);
+glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);
+glm::dvec3 upVec=glm::dvec3(0.0f,1.0f,0.0f);
 int flag=1;
 void drawEmptyClass()
 {
@@ -25,6 +26,11 @@ void drawEmptyClass()
 	glVertex3f(-1.0f,1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,-1.0f);
 	glVertex3f(1.0f,-1.0f,-1.0f);
+	glColor3f(0.5f,0.35f,0.05f);//FRONT
+	glVertex3f(1.0f,1.0f,0.0f);
+	glVertex3f(-1.0f,1.0f,0.0f);
+	glVertex3f(-1.0f,-1.0f,0.0f);
+	glVertex3f(1.0f,-1.0f,0.0f);
 	glColor3f(0.5f,0.35f,0.05f);//LEFT
 	glVertex3f(-1.0f,1.0f,-1.0f);
 	glVertex3f(-1.0f,1.0f,0.0f);
@@ -49,6 +55,18 @@ void drawEmptyClass()
 	glColor3f(0.0f,0.0f,0.0f);//BACK RIGHT
 	glVertex3f(1.0f,1.0f,-1.0f);
 	glVertex3f(1.0f,-1.0f,-1.0f);
+	glColor3f(0.0f,0.0f,0.0f);//FRONT TOP
+	glVertex3f(1.0f,1.0f,0.0f);
+	glVertex3f(-1.0f,1.0f,0.0f);
+	glColor3f(0.0f,0.0f,0.0f);//FRONT BOTTOM
+	glVertex3f(-1.0f,-1.0f,0.0f);
+	glVertex3f(1.0f,-1.0f,0.0f);
+	glColor3f(0.0f,0.0f,0.0f);//FRONT LEFT
+	glVertex3f(-1.0f,1.0f,0.0f);
+	glVertex3f(-1.0f,-1.0f,0.0f);
+	glColor3f(0.0f,0.0f,0.0f);//FRONT RIGHT
+	glVertex3f(1.0f,1.0f,0.0f);
+	glVertex3f(1.0f,-1.0f,0.0f);
 	glColor3f(0.0f,0.0f,0.0f);//TOP LEFT
 	glVertex3f(-1.0f,1.0f,0.0f); 
 	glVertex3f(-1.0f,1.0f,-1.0f);
@@ -72,7 +90,7 @@ void changeSize(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, w, h);
-	gluPerspective(45,ratio,1,100);
+	gluPerspective(fov,ratio,1,100);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -80,25 +98,7 @@ void myDisplay(void) {
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	glRotatef(angle,0.0f,1.0f,0.0f);
-	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],0.0f,0.0f,0.0f,upVec[0],upVec[1],upVec[2]);
-	// glRotatef(-1*angle,0.0f,1.0f,0.0f);
-	// if(flag==1)
-	// {
-	// 	angle+=1.0f;	
-	// }
-	// else if(flag==-1)
-	// {
-	// 	angle-=1.0f;
-	// }	
-	// if(angle>=45.0f)
-	// {
-	// 	flag=-1;
-	// }
-	// if(angle<=-45.0f)
-	// {
-	// 	flag=1;
-	// }
+	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],cameraPos[0]+directionSight[0],cameraPos[1]+directionSight[1],cameraPos[2]+directionSight[2],upVec[0],upVec[1],upVec[2]);
 	drawEmptyClass();
     glutSwapBuffers();
 }
@@ -117,34 +117,74 @@ void update(int data)
 }
 void processNormalKeys(unsigned char key, int x,int y)
 {
+	double sensitivityX=1.5f;
+	double sensitivityY=1.5f;
+	double sensitivityFOV=1.0f;
 	if(key==27)
 	{
 		exit(0);
 	}
+	if(key=='W'||key=='w')
+	{
+		pitch+=sensitivityY;
+	}
+	if(key=='A'||key=='a')
+	{
+		yaw-=sensitivityX;
+	}
+	if(key=='S'||key=='s')
+	{
+		pitch-=sensitivityY;
+	}
+	if(key=='D'||key=='d')
+	{
+		yaw+=sensitivityX;
+	}
+	// if(key=='+')
+	// {
+	// 	fov+=sensitivityFOV;
+	// }
+	// if(key=='-')
+	// {
+	// 	fov-=sensitivityFOV;
+	// }
+	// if(fov<=1.0f)
+	// 	fov=1.0f;
+	// if(fov>=90.0f)
+	// 	fov=90.0f;
+    if(pitch > 89.0f)
+        pitch = 89.0f;
+    if(pitch < -89.0f)
+        pitch = -89.0f;
+    if(yaw > 0.0f)
+        yaw = 0.0f;
+    if(yaw < -179.0f)
+        yaw = -179.0f;
+	glm::dvec3 tempDir;
+	tempDir[0]=cos(glm::radians(yaw))*cos(glm::radians(pitch));
+	tempDir[1]=sin(glm::radians(pitch));
+	tempDir[2]=sin(glm::radians(yaw))*cos(glm::radians(pitch));
+	directionSight=glm::normalize(tempDir);
 }
 
 void processSpecialKeys(int key, int x,int y)
 {
 	double fraction=0.1f;
-	// if(key==GLUT_KEY_LEFT)
-	// {
-
-	// }
-	// if(key==GLUT_KEY_RIGHT)
-	// {
-		
-	// }
+	if(key==GLUT_KEY_LEFT)
+	{
+		cameraPos-=fraction*glm::normalize(glm::cross(directionSight,upVec));
+	}
+	if(key==GLUT_KEY_RIGHT)
+	{
+		cameraPos+=fraction*glm::normalize(glm::cross(directionSight,upVec));	
+	}
 	if(key==GLUT_KEY_UP)
 	{
-		cameraPos[0]+=directionSight[0]*fraction;
-		cameraPos[1]+=directionSight[1]*fraction;
-		cameraPos[2]+=directionSight[2]*fraction;
+		cameraPos+=fraction*directionSight;
 	}
 	if(key==GLUT_KEY_DOWN)
 	{
-		cameraPos[0]-=directionSight[0]*fraction;
-		cameraPos[1]-=directionSight[1]*fraction;
-		cameraPos[2]-=directionSight[2]*fraction;	
+		cameraPos-=fraction*directionSight;
 	}
 }
 int main(int argc, char **argv) 
