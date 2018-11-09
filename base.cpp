@@ -3,14 +3,19 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 using namespace std;
-double pitch=0.0f;/*! The angle specifies the magnitude to which we are looking up or down. Calculated w.r.t x-axis */
-double yaw=-90.0f;/*! The angle specifies the magnitude to which we are looking left or right. Calculated w.r.t y-axis */
-double fov=45.0f;/*! This angle defines how much we can see of the scene.*/
-glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,4.0f);/*! 3D vector that contains the position of camera i.e the PRP*/
-glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);/*! 3D vector that contains the direction of PRP w.r.t VRP*/
-glm::dvec3 upVec=glm::dvec3(0.0f,1.0f,0.0f);/*! 3D vector that contains the direction that defines what direction is UP*/
-
-/*! This function draws an empty Brown Cube which was the original prototype for our classroom*/
+//! The angle specifies the magnitude to which we are looking up or down. Calculated w.r.t x-axis 
+double pitch=0.0f;
+//! The angle specifies the magnitude to which we are looking left or right. Calculated w.r.t y-axis 
+double yaw=-90.0f;
+//! This angle defines how much we can see of the scene.
+double fov=45.0f;
+//! 3D vector that contains the position of camera i.e the PRP
+glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,4.0f);
+//! 3D vector that contains the direction of PRP w.r.t VRP
+glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);
+//! 3D vector that contains the direction that defines what direction is UP
+glm::dvec3 upVec=glm::dvec3(0.0f,1.0f,0.0f);
+//*! This function draws an empty Brown Cube which was the original prototype for our classroom*/
 void drawEmptyClass()
 {
 	glBegin(GL_QUADS);
@@ -84,7 +89,7 @@ void drawEmptyClass()
 	glVertex3f(1.0f,-1.0f,-1.0f);
 	glEnd();
 }
-/*! This function is the reshape function that is called everytime an OpenGL window is generated"
+/*! This function is the reshape function that is called everytime an OpenGL window is generated
 \param w The width of the window.
 \param h The height of the window.
 */
@@ -99,7 +104,7 @@ void changeSize(int w, int h)
 	gluPerspective(fov,ratio,1,100);
 	glMatrixMode(GL_MODELVIEW);
 }
-/*! This function is the display function that is registered with our OpenGL instance.This routine is redrawn everytime the OpenGL window is refreshed"
+/*! This function is the display function that is registered with our OpenGL instance.This routine is redrawn everytime the OpenGL window is refreshed
 */
 void myDisplay(void) {
 
@@ -109,7 +114,7 @@ void myDisplay(void) {
 	drawEmptyClass();
     glutSwapBuffers();
 }
-/*! This function provides the initial settings for our OpenGL window"
+/*! This function provides the initial settings for our OpenGL window
 */
 void myinit()
 {
@@ -120,14 +125,14 @@ void myinit()
 	glDepthFunc(GL_LEQUAL);
 }
 
-/*! This function details the time intervals at which to redraw the scene in OpenGL"
+/*! This function details the time intervals at which to redraw the scene in OpenGL
 */
 void update(int data)
 {
 	glutTimerFunc(45,update,0);
 	glutPostRedisplay();
 }
-/*! This function details how to process all the keys for which ASCII values exist"
+/*! This function details how to process all the keys for which ASCII values exist
 \param key The key that has been pressed.
 \param x Integer parameter
 \param y Integer parameter
@@ -184,7 +189,7 @@ void processNormalKeys(unsigned char key, int x,int y)
 	directionSight=glm::normalize(tempDir);
 }
 
-/*! This function details how to process all the keys for which ASCII values do not exist"
+/*! This function details how to process all the keys for which ASCII values do not exist
 \param key The key that has been pressed.
 \param x Integer parameter
 \param y Integer parameter
