@@ -119,7 +119,7 @@ void processNormalKeys(unsigned char key, int x,int y)
 {
 	double sensitivityX=1.5f;
 	double sensitivityY=1.5f;
-	double sensitivityFOV=1.0f;
+	// double sensitivityFOV=1.0f;
 	if(key==27)
 	{
 		exit(0);
