@@ -129,15 +129,15 @@ void drawClock(){
   glRotatef(-1*angle3,0.0f, 0.0f, 1.0f);
 
 
-  angle1 += 1.0f;
+  angle1 += 6.0f;
     if (angle1 > 360) {
         angle1 -= 360;
-        angle2 += 1.0f;
+        angle2 += 6.0f;
     }
     if(angle2 > 360)
     {
       angle2 -= 360;
-      angle3 += 1.0f;
+      angle3 += 6.0f;
     }
   // glFlush();
   glutSwapBuffers();
