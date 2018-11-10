@@ -19,7 +19,9 @@
 // ----------------------------------------------------------
 // double rotate_y=0;
 // double rotate_x=0;
-float _angle = -70.0f;
+float angle1 = 0.0f;
+float angle2 = 60.0f;
+float angle3 = 300.0f;
 // ----------------------------------------------------------
 // display() Callback function
 // ----------------------------------------------------------
@@ -102,28 +104,49 @@ void drawClock(){
   
   glEnd();
 
-  glRotatef(_angle,0.0f, 0.0f, 1.0f);
-
+  
   // hands of the Clock
+  glRotatef(angle1,0.0f, 0.0f, 1.0f);
   glBegin(GL_LINES);
-  glColor3f(0.0f,0.0f,0.0f);//BACK TOP
-
+  glColor3f(1.0f,0.0f,0.0f);
   glVertex3f(0.0f, 0.0f, 0.0f);
   glVertex3f(0.0f, 0.5f, 0.0f);
   glEnd();
+  glRotatef(-1*angle1,0.0f, 0.0f, 1.0f);
+  glRotatef(angle2,0.0f, 0.0f, 1.0f);
+  glBegin(GL_LINES);
+  glColor3f(0.0f,0.0f,0.0f);
+  glVertex3f(0.0f, 0.0f, 0.0f);
+  glVertex3f(0.0f, 0.5f, 0.0f);
+  glEnd();
+  glRotatef(-1*angle2,0.0f, 0.0f, 1.0f);
+  glRotatef(angle3,0.0f, 0.0f, 1.0f);
+  glBegin(GL_LINES);
+  glColor3f(0.0f,0.0f,0.0f);
+  glVertex3f(0.0f, 0.0f, 0.0f);
+  glVertex3f(0.0f, 0.25f, 0.0f);
+  glEnd();
+  glRotatef(-1*angle3,0.0f, 0.0f, 1.0f);
 
-  _angle += 1.5f;
-    if (_angle > 360) {
-        _angle -= 360;
+
+  angle1 += 1.0f;
+    if (angle1 > 360) {
+        angle1 -= 360;
+        angle2 += 1.0f;
+    }
+    if(angle2 > 360)
+    {
+      angle2 -= 360;
+      angle3 += 1.0f;
     }
   // glFlush();
   glutSwapBuffers();
 }
 
 // void update(int value) {
-//     _angle += 1.5f;
-//     if (_angle > 360) {
-//         _angle -= 360;
+//     angle1 += 1.5f;
+//     if (angle1 > 360) {
+//         angle1 -= 360;
 //     }
 //     glutPostRedisplay();
 //     glutTimerFunc(25, update, 0);

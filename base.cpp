@@ -13,7 +13,7 @@ double yaw=-90.0f;
 //! This angle defines how much we can see of the scene.
 double fov=45.0f;
 //! 3D vector that contains the position of camera i.e the PRP
-glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,10.0f);
+glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,4.0f);
 //! 3D vector that contains the direction of PRP w.r.t VRP
 glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);
 //! 3D vector that contains the direction that defines what direction is UP
@@ -32,16 +32,16 @@ void drawEmptyClass()
 	glVertex3f(-1.0f,-1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,0.0f);
 	glVertex3f(1.0f,-1.0f,0.0f);
-	glColor3f(0.5f,0.35f,0.05f);//BACK
-	glVertex3f(1.0f,1.0f,-1.0f);
-	glVertex3f(-1.0f,1.0f,-1.0f);
-	glVertex3f(-1.0f,-1.0f,-1.0f);
-	glVertex3f(1.0f,-1.0f,-1.0f);
-	glColor3f(0.5f,0.35f,0.05f);//FRONT
-	glVertex3f(1.0f,1.0f,0.0f);
-	glVertex3f(-1.0f,1.0f,0.0f);
-	glVertex3f(-1.0f,-1.0f,0.0f);
-	glVertex3f(1.0f,-1.0f,0.0f);
+	// glColor3f(0.5f,0.35f,0.05f);//BACK
+	// glVertex3f(1.0f,1.0f,-1.0f);
+	// glVertex3f(-1.0f,1.0f,-1.0f);
+	// glVertex3f(-1.0f,-1.0f,-1.0f);
+	// glVertex3f(1.0f,-1.0f,-1.0f);
+	// glColor3f(0.5f,0.35f,0.05f);//FRONT
+	// glVertex3f(1.0f,1.0f,0.0f);
+	// glVertex3f(-1.0f,1.0f,0.0f);
+	// glVertex3f(-1.0f,-1.0f,0.0f);
+	// glVertex3f(1.0f,-1.0f,0.0f);
 	glColor3f(0.5f,0.35f,0.05f);//LEFT
 	glVertex3f(-1.0f,1.0f,-1.0f);
 	glVertex3f(-1.0f,1.0f,0.0f);
@@ -114,8 +114,12 @@ void myDisplay(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],cameraPos[0]+directionSight[0],cameraPos[1]+directionSight[1],cameraPos[2]+directionSight[2],upVec[0],upVec[1],upVec[2]);
-	// drawEmptyClass();
+	drawEmptyClass();
+	glTranslatef(0.0,0.7,-0.8);
+	glScalef(0.25,0.25,0.5);
 	drawClock();
+	glScalef(4,4,2);
+	glTranslatef(0.0,0.0,1.0);
     glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window
@@ -178,12 +182,12 @@ void processNormalKeys(unsigned char key, int x,int y)
 	// 	fov=1.0f;
 	// if(fov>=90.0f)
 	// 	fov=90.0f;
-    if(pitch > 89.0f)
-        pitch = 89.0f;
-    if(pitch < -89.0f)
-        pitch = -89.0f;
-    if(yaw > 0.0f)
-        yaw = 0.0f;
+    if(pitch > 179.0f)
+        pitch = 179.0f;
+    if(pitch < -179.0f)
+        pitch = -179.0f;
+    if(yaw > 179.9f)
+        yaw = 179.0f;
     if(yaw < -179.0f)
         yaw = -179.0f;
 	glm::dvec3 tempDir;
