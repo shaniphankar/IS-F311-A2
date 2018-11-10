@@ -114,12 +114,131 @@ void myDisplay(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],cameraPos[0]+directionSight[0],cameraPos[1]+directionSight[1],cameraPos[2]+directionSight[2],upVec[0],upVec[1],upVec[2]);
+	//Drawing empty classroom
+	glScalef(1.0,1.0,2.0);
 	drawEmptyClass();
-	glTranslatef(0.0,0.7,-0.8);
+	//Drawing chairs
+	//Chair 1
+	glTranslatef(-0.75,-0.82f,-0.1);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(0.75,0.82f,0.1);
+	//Chair 2
+	glTranslatef(-0.25,-0.82f,-0.1);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(0.25,0.82f,0.1);
+	//Chair 3
+	glTranslatef(0.25,-0.82f,-0.1);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(-0.25,0.82f,0.1);
+	//Chair 4
+	glTranslatef(0.75,-0.82f,-0.1);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(-0.75,0.82f,0.1);
+	//Chair 5
+	glTranslatef(-0.75,-0.82f,-0.3);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(0.75,0.82f,0.3);
+	//Chair 6
+	glTranslatef(-0.25,-0.82f,-0.3);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(0.25,0.82f,0.3);
+	//Chair 7
+	glTranslatef(0.25,-0.82f,-0.3);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(-0.25,0.82f,0.3);
+	//Chair 8
+	glTranslatef(0.75,-0.82f,-0.3);
+	glScalef(0.05,0.05,0.025);
+	glRotatef(180,0.0,1.0,0.0);
+	drawChair();
+	glRotatef(-180,0.0,1.0,0.0);
+	glScalef(20,20,40);
+	glTranslatef(-0.75,0.82f,0.3);
+	//Drawing Tables
+	//Drawing Table 8
+	glTranslatef(0.75,-0.75f,-0.35);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(-0.75,0.75f,0.35);
+	//Drawing Table 7
+	glTranslatef(0.25,-0.75f,-0.35);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(-0.25,0.75f,0.35);
+	//Drawing Table 6
+	glTranslatef(-0.25,-0.75f,-0.35);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(0.25,0.75f,0.35);
+	//Drawing Table 5
+	glTranslatef(-0.75,-0.75f,-0.35);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(0.75,0.75f,0.35);
+	//Drawing Table 4
+	glTranslatef(0.75,-0.75f,-0.15);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(-0.75,0.75f,0.15);
+	//Drawing Table 3
+	glTranslatef(0.25,-0.75f,-0.15);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(-0.25,0.75f,0.15);
+	//Drawing Table 2
+	glTranslatef(-0.25,-0.75f,-0.15);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(0.25,0.75f,0.15);
+	//Drawing Table 1
+	glTranslatef(-0.75,-0.75f,-0.15);
+	glScalef(0.1,0.1,0.02);
+	drawTable();
+	glScalef(10,10,50);
+	glTranslatef(0.75,0.75f,0.15);
+	
+	//Drawing Clock
+	glTranslatef(0.0,0.7,-1.9);
 	glScalef(0.25,0.25,0.5);
 	drawClock();
 	glScalef(4,4,2);
-	glTranslatef(0.0,0.0,1.0);
+	glTranslatef(0.0,-0.7,1.9);
+
     glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window
@@ -137,7 +256,7 @@ void myinit()
 */
 void update(int data)
 {
-	glutTimerFunc(45,update,0);
+	glutTimerFunc(30,update,0);
 	glutPostRedisplay();
 }
 /*! This function details how to process all the keys for which ASCII values exist
@@ -233,7 +352,7 @@ int main(int argc, char **argv)
 	glutReshapeFunc(changeSize);
 	glutKeyboardFunc(processNormalKeys);
 	glutSpecialFunc(processSpecialKeys);
-	glutTimerFunc(45,update,0);
+	glutTimerFunc(30,update,0);
 	myinit();
 	glutMainLoop();
 	return 1;

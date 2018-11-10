@@ -271,7 +271,7 @@ void drawTable()
  // glVertex3f(1.8f, 3.5f, -1.8f);
  // glVertex3f(1.8f, 3.5f, -2.0f);
  glEnd();
- glutSwapBuffers();
+ // glutSwapBuffers();
  
  }
  

@@ -140,7 +140,7 @@ void drawClock(){
       angle3 += 6.0f;
     }
   // glFlush();
-  glutSwapBuffers();
+  // glutSwapBuffers();
 }
 
 // void update(int value) {
