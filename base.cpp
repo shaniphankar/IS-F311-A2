@@ -2,6 +2,9 @@
 #include <GL/glut.h>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
+#include "chair.h"
+#include "table.h"
+#include "clock.h"
 using namespace std;
 //! The angle specifies the magnitude to which we are looking up or down. Calculated w.r.t x-axis 
 double pitch=0.0f;
@@ -10,7 +13,7 @@ double yaw=-90.0f;
 //! This angle defines how much we can see of the scene.
 double fov=45.0f;
 //! 3D vector that contains the position of camera i.e the PRP
-glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,4.0f);
+glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,10.0f);
 //! 3D vector that contains the direction of PRP w.r.t VRP
 glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);
 //! 3D vector that contains the direction that defines what direction is UP
@@ -111,7 +114,8 @@ void myDisplay(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],cameraPos[0]+directionSight[0],cameraPos[1]+directionSight[1],cameraPos[2]+directionSight[2],upVec[0],upVec[1],upVec[2]);
-	drawEmptyClass();
+	// drawEmptyClass();
+	drawClock();
     glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window

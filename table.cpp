@@ -1,47 +1,37 @@
-//#include <windows.h>
-#include <GL/glut.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <math.h>
-#define GL_GLEXT_PROTOTYPES
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
+#include "table.h"
 
-
-double rotate_y=0;
-double rotate_x=0;
+// double rotate_y=0;
+// double rotate_x=0;
 
 //Initializes 3D rendering
-void initRendering() {
- glEnable(GL_DEPTH_TEST);
- glEnable(GL_COLOR_MATERIAL);
- glEnable(GL_LIGHTING); //Enable lighting
- glEnable(GL_LIGHT0); //Enable light #0
- glEnable(GL_LIGHT1); //Enable light #1
- glEnable(GL_NORMALIZE); //Automatically normalize normals
- glShadeModel(GL_SMOOTH); //Enable smooth shading
-}
+// void initRendering() {
+//  glEnable(GL_DEPTH_TEST);
+//  glEnable(GL_COLOR_MATERIAL);
+//  glEnable(GL_LIGHTING); //Enable lighting
+//  glEnable(GL_LIGHT0); //Enable light #0
+//  glEnable(GL_LIGHT1); //Enable light #1
+//  glEnable(GL_NORMALIZE); //Automatically normalize normals
+//  glShadeModel(GL_SMOOTH); //Enable smooth shading
+// }
 
-//Called when the window is resized
-void handleResize(int w, int h) {
- glMatrixMode(GL_PROJECTION);
- glLoadIdentity();
- gluPerspective(45.0, (double)w / (double)h, 1.0, 200.0);
-}
+// //Called when the window is resized
+// void handleResize(int w, int h) {
+//  glMatrixMode(GL_PROJECTION);
+//  glLoadIdentity();
+//  gluPerspective(45.0, (double)w / (double)h, 1.0, 200.0);
+// }
 
-float _angle = -70.0f;
+// float _angle = -70.0f;
 
 //Draws the 3D scene
-void drawScene() {
- glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void drawTable() 
+ {
+ // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
- glMatrixMode(GL_MODELVIEW); // keep it like this
- glLoadIdentity();
+ // glMatrixMode(GL_MODELVIEW); // keep it like this
+ // glLoadIdentity();
 
- glTranslatef(0.0f, 0.0f, -14.0f);
+ // glTranslatef(0.0f, 0.0f, -14.0f);
 
  //Add ambient light
  GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f}; //Color (0.2, 0.2, 0.2)
@@ -67,8 +57,8 @@ void drawScene() {
  //glRotatef(-10, 0.0f, 0.0f, 1.0f);
  //glRotatef(_angle,0.0f, 1.0f, 0.0f);
 
- glRotatef( rotate_x, 1.0, 0.0, 0.0 );
- glRotatef( rotate_y, 0.0, 1.0, 0.0 );
+ glRotatef( 0, 1.0, 0.0, 0.0 );
+ glRotatef( 0, 0.0, 1.0, 0.0 );
 
   glColor3f(1.0f, 1.0f, 0.0f);
  glBegin(GL_QUADS);
@@ -282,58 +272,57 @@ void drawScene() {
  // glVertex3f(1.8f, 3.5f, -2.0f);
  glEnd();
  glutSwapBuffers();
+ 
+ }
+ 
+// void update(int value) {
+//     _angle += 1.5f;
+//     if (_angle > 360) {
+//         _angle -= 360;
+//     }
 
-}
+//     glutPostRedisplay();
+//     glutTimerFunc(25, update, 0);
+// }
 
-void update(int value) {
-    _angle += 1.5f;
-    if (_angle > 360) {
-        _angle -= 360;
-    }
+// void specialKeys( int key, int x, int y ) {
 
-    glutPostRedisplay();
-    glutTimerFunc(25, update, 0);
-}
+//   //  Right arrow - increase rotation by 5 degree
+//   if (key == GLUT_KEY_RIGHT)
+//     rotate_y += 5;
 
-void specialKeys( int key, int x, int y ) {
+//   //  Left arrow - decrease rotation by 5 degree
+//   else if (key == GLUT_KEY_LEFT)
+//     rotate_y -= 5;
 
-  //  Right arrow - increase rotation by 5 degree
-  if (key == GLUT_KEY_RIGHT)
-    rotate_y += 5;
+//   else if (key == GLUT_KEY_UP)
+//     rotate_x += 5;
 
-  //  Left arrow - decrease rotation by 5 degree
-  else if (key == GLUT_KEY_LEFT)
-    rotate_y -= 5;
+//   else if (key == GLUT_KEY_DOWN)
+//     rotate_x -= 5;
 
-  else if (key == GLUT_KEY_UP)
-    rotate_x += 5;
+//   //  Request display update
+//   glutPostRedisplay();
 
-  else if (key == GLUT_KEY_DOWN)
-    rotate_x -= 5;
+// }
+// int main(int argc, char** argv) {
+//  //Initialize GLUT
+//  glutInit(&argc, argv);
+//  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+//  glutInitWindowSize(600, 600);
 
-  //  Request display update
-  glutPostRedisplay();
+//  //Create the window
+//  glutCreateWindow("Lighting");
+//  initRendering();
 
-}
-int main(int argc, char** argv) {
- //Initialize GLUT
- glutInit(&argc, argv);
- glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
- glutInitWindowSize(600, 600);
+//  //Set handler functions
+//  glutDisplayFunc(drawScene);
+//  // glutSpecialFunc(specialKeys);
+//  glutReshapeFunc(handleResize);
 
- //Create the window
- glutCreateWindow("Lighting");
- initRendering();
-
- //Set handler functions
- glutDisplayFunc(drawScene);
- glutSpecialFunc(specialKeys);
-
- glutReshapeFunc(handleResize);
-
- // update(0);
+//  // update(0);
 
 
- glutMainLoop();
- return 0;
-}
+//  glutMainLoop();
+//  return 0;
+// }
