@@ -2,9 +2,14 @@
 #include <GL/glut.h>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
+#include <vector>
+#include <string>
 #include "chair.h"
 #include "table.h"
 #include "clock.h"
+#include "door.h"
+#include "vase.h"
+#include "blackboard.h"
 using namespace std;
 //! The angle specifies the magnitude to which we are looking up or down. Calculated w.r.t x-axis 
 double pitch=0.0f;
@@ -19,14 +24,15 @@ glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);
 //! 3D vector that contains the direction that defines what direction is UP
 glm::dvec3 upVec=glm::dvec3(0.0f,1.0f,0.0f);
 //*! This function draws an empty Brown Cube which was the original prototype for our classroom*/
+
 void drawEmptyClass()
 {
 	glBegin(GL_QUADS);
-	glColor3f(0.5f,0.35f,0.05f);//TOP
-	glVertex3f(1.0f,1.0f,-1.0f);
-	glVertex3f(-1.0f,1.0f,-1.0f);
-	glVertex3f(-1.0f,1.0f,0.0f);
-	glVertex3f(1.0f,1.0f,0.0f);
+	// glColor3f(0.5f,0.35f,0.05f);//TOP
+	// glVertex3f(1.0f,1.0f,-1.0f);
+	// glVertex3f(-1.0f,1.0f,-1.0f);
+	// glVertex3f(-1.0f,1.0f,0.0f);
+	// glVertex3f(1.0f,1.0f,0.0f);
 	glColor3f(0.5f,0.35f,0.05f);//BOTTOM
 	glVertex3f(1.0f,-1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,-1.0f);
@@ -47,11 +53,11 @@ void drawEmptyClass()
 	glVertex3f(-1.0f,1.0f,0.0f);
 	glVertex3f(-1.0f,-1.0f,0.0f);
 	glVertex3f(-1.0f,-1.0f,-1.0f);
-	glColor3f(0.5f,0.35f,0.05f);//RIGHT
-	glVertex3f(1.0f,1.0f,0.0f);
-	glVertex3f(1.0f,1.0f,-1.0f);
-	glVertex3f(1.0f,-1.0f,-1.0f);
-	glVertex3f(1.0f,-1.0f,0.0f);
+	// glColor3f(0.5f,0.35f,0.05f);//RIGHT
+	// glVertex3f(1.0f,1.0f,0.0f);
+	// glVertex3f(1.0f,1.0f,-1.0f);
+	// glVertex3f(1.0f,-1.0f,-1.0f);
+	// glVertex3f(1.0f,-1.0f,0.0f);
 	glEnd();
 	glBegin(GL_LINES);
 	glColor3f(0.0f,0.0f,0.0f);//BACK TOP
@@ -117,8 +123,8 @@ void myDisplay(void) {
 	//Drawing empty classroom
 	glScalef(1.0,1.0,2.0);
 	drawEmptyClass();
-	//Drawing chairs
-	//Chair 1
+	// Drawing chairs
+	// Chair 1
 	glTranslatef(-0.75,-0.82f,-0.1);
 	glScalef(0.05,0.05,0.025);
 	glRotatef(180,0.0,1.0,0.0);
@@ -233,13 +239,38 @@ void myDisplay(void) {
 	glTranslatef(0.75,0.75f,0.15);
 	
 	//Drawing Clock
-	glTranslatef(0.0,0.7,-1.9);
+	glTranslatef(0.0,0.7,-0.9);
 	glScalef(0.25,0.25,0.5);
 	drawClock();
 	glScalef(4,4,2);
-	glTranslatef(0.0,-0.7,1.9);
+	glTranslatef(0.0,-0.7,0.9);
+	glScalef(1.0,1.0,0.5);
 
-    glutSwapBuffers();
+	//Drawing Vase
+	glTranslatef(-0.6,-0.9,-2.0);
+	glScalef(0.25,0.25,0.25);
+	glRotatef(-90,1.0f,0.0f,0.0f);
+	drawVase();
+	glRotatef(90,1.0f,0.0f,0.0f);
+	glScalef(4,4,4);
+	glTranslatef(0.6,0.9,2.0);	
+	//Drawing Board
+	glTranslatef(-0.0,-0.0,-2.0);
+	glScalef(0.8,0.8,0.8);
+	drawBoard();
+	glScalef(1.25,1.25,1.25);
+	glTranslatef(-0.0,-0.0,2.0);
+	//Drawing Door
+	glTranslatef(0.9,-0.3,-2.5);
+	glRotatef(-90,0.0,0.0,1.0);
+	glRotatef(-90,1.0,0.0,0.0);
+	glScalef(0.80,0.60,0.5);
+	drawDoor();
+	glScalef(1.25,1.67,2);
+	glRotatef(90,1.0,0.0,0.0);
+	glRotatef(90,0.0,0.0,1.0);
+	glTranslatef(-0.9,0.3,2.5);
+	glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window
 */
