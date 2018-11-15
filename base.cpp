@@ -11,6 +11,10 @@
 #include "vase.h"
 #include "blackboard.h"
 using namespace std;
+//! The angle specifies the amount with which we are rotating along x-axis about up axis 
+double rotate_x=0.0f;
+//! The angle specifies the amount with which we are rotating along y-axis about up axis
+double rotate_y=0.0f;
 //! The angle specifies the magnitude to which we are looking up or down. Calculated w.r.t x-axis 
 double pitch=0.0f;
 //! The angle specifies the magnitude to which we are looking left or right. Calculated w.r.t y-axis 
@@ -122,6 +126,8 @@ void myDisplay(void) {
 	glLoadIdentity();
 	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],cameraPos[0]+directionSight[0],cameraPos[1]+directionSight[1],cameraPos[2]+directionSight[2],upVec[0],upVec[1],upVec[2]);
 	//Drawing empty classroom
+	glRotatef(rotate_x,0.0f,1.0f,0.0f);
+	glRotatef(rotate_y,1.0f,0.0f,0.0f);
 	glScalef(1.0,1.0,2.0);
 	drawEmptyClass();
 	// Drawing chairs
@@ -271,6 +277,8 @@ void myDisplay(void) {
 	glRotatef(90,1.0,0.0,0.0);
 	glRotatef(90,0.0,0.0,1.0);
 	glTranslatef(-0.9,0.3,2.5);
+	glRotatef(-1*rotate_x,1.0f,0.0f,0.0f);
+	glRotatef(-1*rotate_y,0.0f,1.0f,0.0f);
 	glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window
@@ -320,6 +328,22 @@ void processNormalKeys(unsigned char key, int x,int y)
 	if(key=='D'||key=='d')
 	{
 		yaw+=sensitivityX;
+	}
+	if(key=='I'||key=='i')
+	{
+		rotate_y+=sensitivityY;
+	}
+	if(key=='J'||key=='j')
+	{
+		rotate_x-=sensitivityX;
+	}
+	if(key=='K'||key=='k')
+	{
+		rotate_y-=sensitivityY;
+	}
+	if(key=='L'||key=='l')
+	{
+		rotate_x+=sensitivityX;
 	}
 	// if(key=='+')
 	// {
