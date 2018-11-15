@@ -1,10 +1,13 @@
 #ifndef VASE_H
 #define VASE_H
 
-#include <GL/glut.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <math.h>
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <GL/glut.h>
 #define GL_GLEXT_PROTOTYPES
 #ifdef __APPLE__
 #include <GLUT/glut.h>

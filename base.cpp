@@ -23,8 +23,9 @@ glm::dvec3 cameraPos=glm::dvec3(0.0f,0.0f,4.0f);
 glm::dvec3 directionSight=glm::dvec3(0.0f,0.0f,-1.0f);
 //! 3D vector that contains the direction that defines what direction is UP
 glm::dvec3 upVec=glm::dvec3(0.0f,1.0f,0.0f);
-//*! This function draws an empty Brown Cube which was the original prototype for our classroom*/
 
+/*! This function draws the empty cubic frame that forms the prototype for our classroom.
+*/
 void drawEmptyClass()
 {
 	glBegin(GL_QUADS);
