@@ -48,11 +48,11 @@ void drawEmptyClass()
 	// glVertex3f(-1.0f,1.0f,0.0f);
 	// glVertex3f(-1.0f,-1.0f,0.0f);
 	// glVertex3f(1.0f,-1.0f,0.0f);
-	glColor3f(0.5f,0.35f,0.05f);//LEFT
-	glVertex3f(-1.0f,1.0f,-1.0f);
-	glVertex3f(-1.0f,1.0f,0.0f);
-	glVertex3f(-1.0f,-1.0f,0.0f);
-	glVertex3f(-1.0f,-1.0f,-1.0f);
+	// glColor3f(0.5f,0.35f,0.05f);//LEFT
+	// glVertex3f(-1.0f,1.0f,-1.0f);
+	// glVertex3f(-1.0f,1.0f,0.0f);
+	// glVertex3f(-1.0f,-1.0f,0.0f);
+	// glVertex3f(-1.0f,-1.0f,-1.0f);
 	// glColor3f(0.5f,0.35f,0.05f);//RIGHT
 	// glVertex3f(1.0f,1.0f,0.0f);
 	// glVertex3f(1.0f,1.0f,-1.0f);
@@ -276,7 +276,7 @@ void myDisplay(void) {
 */
 void myinit()
 {
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClearColor(0.6, 0.8, 0.0, 1.0);
 	glShadeModel(GL_SMOOTH);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
