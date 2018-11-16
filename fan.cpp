@@ -1,50 +1,10 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <math.h>
-#define GL_GLEXT_PROTOTYPES
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
+#include "fan.h"
+//! The angle specifies the amount by which the fan has been rotated 
+float _angle2 = -70.0f;
+/*! This function draws our multicolored fan. The fan was made using a composite alloy of multiple colored metals which gives it it's unique look.*/
+void drawFan(){
 
-// ----------------------------------------------------------
-// Function Prototypes
-// ----------------------------------------------------------
-void display();
-void specialKeys();
-
-// ----------------------------------------------------------
-// Global Variables
-// ----------------------------------------------------------
-double rotate_y=0;
-double rotate_x=0;
-float _angle = -70.0f;
-// ----------------------------------------------------------
-// display() Callback function
-// ----------------------------------------------------------
-void display(){
-
-  //  Clear screen and Z-buffer
-  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
-  // Reset transformations
-  glLoadIdentity();
-
-  // Other Transformations
-  // glTranslatef( 0.4, 0.0, 0.0 );      // Not included
-  // glRotatef( 180, 0.0, 1.0, 0.0 );    // Not included
-
-  // Rotate when user changes rotate_x and rotate_y
-  glRotatef( rotate_x, 1.0, 0.0, 0.0 );
-  glRotatef( rotate_y, 0.0, 1.0, 0.0 );
-
-  // Other Transformations
-  // glScalef( 2.0, 2.0, 0.0 );          // Not included
-
-  glTranslatef( 0.0, 0.0, 0.4 );
-
-  //Multi-colored side - FRONT
+ //Multi-colored side - FRONT
   glBegin(GL_POLYGON);
   glColor3f(   1.0,  1.0, 0.0 );
   glVertex3f(  0.03, -0.03, -0.4 );      // P1 is red
@@ -100,7 +60,7 @@ void display(){
   glEnd();
 
   glTranslatef( 0.0, 0.0, -0.4 );
-  glRotatef(_angle,0.0f, 0.0f, 1.0f);
+  glRotatef(_angle2,0.0f, 0.0f, 1.0f);
 
   //Multi-colored side - FRONT
   glBegin(GL_POLYGON);
@@ -178,71 +138,9 @@ void display(){
   glVertex3f( 0.15, 0.9, 0 );
   glVertex3f( 0, 0 , 0);
   glEnd();
-
-
-  glFlush();
-  glutSwapBuffers();
-
-}
-
-void update(int value) {
-    _angle += 3.0f;
-    if (_angle > 360) {
-        _angle -= 360;
-    }
-    glutPostRedisplay();
-    glutTimerFunc(25, update, 0);
-}
-
-// ----------------------------------------------------------
-// specialKeys() Callback Function
-// ----------------------------------------------------------
-void specialKeys( int key, int x, int y ) {
-
-  //  Right arrow - increase rotation by 5 degree
-  if (key == GLUT_KEY_RIGHT)
-    rotate_y += 5;
-
-  //  Left arrow - decrease rotation by 5 degree
-  else if (key == GLUT_KEY_LEFT)
-    rotate_y -= 5;
-
-  else if (key == GLUT_KEY_UP)
-    rotate_x += 5;
-
-  else if (key == GLUT_KEY_DOWN)
-    rotate_x -= 5;
-
-  //  Request display update
-  glutPostRedisplay();
-
-}
-
-// ----------------------------------------------------------
-// main() function
-// ----------------------------------------------------------
-int main(int argc, char* argv[]){
-
-  //  Initialize GLUT and process user parameters
-  glutInit(&argc,argv);
-
-  //  Request double buffered true color window with Z-buffer
-  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-
-  // Create window
-  glutCreateWindow("Awesome Cube");
-
-  //  Enable Z-buffer depth test
-  glEnable(GL_DEPTH_TEST);
-
-  // Callback functions
-  glutDisplayFunc(display);
-  glutSpecialFunc(specialKeys);
-  update(0);
-  //  Pass control to GLUT for events
-  glutMainLoop();
-
-  //  Return to OS
-  return 0;
+  _angle2 += 3.0f;
+  if (_angle2 > 360) {
+      _angle2 -= 360;
+  }
 
 }

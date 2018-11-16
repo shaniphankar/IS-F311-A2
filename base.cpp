@@ -10,6 +10,7 @@
 #include "door.h"
 #include "vase.h"
 #include "blackboard.h"
+#include "fan.h"
 using namespace std;
 //! The angle specifies the amount with which we are rotating along x-axis about up axis 
 double rotate_x=0.0f;
@@ -277,8 +278,17 @@ void myDisplay(void) {
 	glRotatef(90,1.0,0.0,0.0);
 	glRotatef(90,0.0,0.0,1.0);
 	glTranslatef(-0.9,0.3,2.5);
+	//Drawing Fan
+	glTranslatef(0.0,0.8,-2.7);
+	glRotatef(-90,1.0,0.0,0.0);
+	glScalef(0.5,0.5,0.75);
+	drawFan();
+	glScalef(2.0,2.0,1.33);
+	glRotatef(90,1.0,0.0,0.0);
+	glTranslatef(0.0,-0.8,2.7);
 	glRotatef(-1*rotate_x,1.0f,0.0f,0.0f);
 	glRotatef(-1*rotate_y,0.0f,1.0f,0.0f);
+	
 	glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window
