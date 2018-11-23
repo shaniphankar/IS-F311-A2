@@ -4,6 +4,7 @@
 #include <glm/vec3.hpp>
 #include <vector>
 #include <string>
+#include <ctime>
 #include "chair.h"
 #include "table.h"
 #include "clock.h"
@@ -39,7 +40,8 @@ void drawEmptyClass()
 	// glVertex3f(-1.0f,1.0f,-1.0f);
 	// glVertex3f(-1.0f,1.0f,0.0f);
 	// glVertex3f(1.0f,1.0f,0.0f);
-	glColor3f(0.5f,0.35f,0.05f);//BOTTOM
+	glColor3f(0.196, 0.6, 0.8);//BOTTOM
+	
 	glVertex3f(1.0f,-1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,-1.0f);
 	glVertex3f(-1.0f,-1.0f,0.0f);
@@ -127,6 +129,7 @@ void myDisplay(void) {
 	glLoadIdentity();
 	gluLookAt(cameraPos[0],cameraPos[1],cameraPos[2],cameraPos[0]+directionSight[0],cameraPos[1]+directionSight[1],cameraPos[2]+directionSight[2],upVec[0],upVec[1],upVec[2]);
 	//Drawing empty classroom
+	clock_t begin= clock();
 	glRotatef(rotate_x,0.0f,1.0f,0.0f);
 	glRotatef(rotate_y,1.0f,0.0f,0.0f);
 	glScalef(1.0,1.0,2.0);
@@ -289,13 +292,16 @@ void myDisplay(void) {
 	glRotatef(-1*rotate_x,1.0f,0.0f,0.0f);
 	glRotatef(-1*rotate_y,0.0f,1.0f,0.0f);
 	
+	clock_t end = clock();
+	cout<< double(end-begin)/CLOCKS_PER_SEC<<endl;
+	
 	glutSwapBuffers();
 }
 /*! This function provides the initial settings for our OpenGL window
 */
 void myinit()
 {
-	glClearColor(0.6, 0.8, 0.0, 1.0);
+	glClearColor(0.439216f,0.858824f,0.576471f,1.0);
 	glShadeModel(GL_SMOOTH);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);

@@ -21,7 +21,7 @@ void drawTable()
  glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
  glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
 
-  glColor3f(1.0f, 1.0f, 0.0f);
+ glColor3f(0.55f, 0.47f, 0.14f);
  glBegin(GL_QUADS);
 
  //Front
